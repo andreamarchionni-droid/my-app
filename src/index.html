@@ -19,6 +19,34 @@
 
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="manifest" href="./manifest.json" />
+  <script>
+    window.onerror = function (msg, url, lineNo, columnNo, error) {
+      var container = document.getElementById('debug-console');
+      if (!container) {
+        container = document.createElement('div');
+        container.id = 'debug-console';
+        container.style.position = 'fixed';
+        container.style.top = '0';
+        container.style.left = '0';
+        container.style.width = '100%';
+        container.style.height = '50%';
+        container.style.backgroundColor = 'rgba(0,0,0,0.8)';
+        container.style.color = 'lime';
+        container.style.zIndex = '99999';
+        container.style.overflow = 'auto';
+        container.style.padding = '10px';
+        container.style.fontSize = '12px';
+        container.style.pointerEvents = 'none';
+        document.body.appendChild(container);
+      }
+      container.innerHTML += '<p style="margin:2px 0">🔴 ' + msg + ' (' + url + ':' + lineNo + ')</p>';
+      return false;
+    };
+
+    window.addEventListener('unhandledrejection', function (event) {
+      window.onerror('Unhandled Rejection: ' + event.reason, '', 0, 0, event.reason);
+    });
+  </script>
 </head>
 
 <body>

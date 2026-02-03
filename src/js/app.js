@@ -384,13 +384,21 @@ elements.trainModal.addEventListener('click', (e) => {
   if (e.target === elements.trainModal) closeTraining();
 });
 
+import { SplashScreen } from '@capacitor/splash-screen';
+
 // ===== INITIALIZATION =====
-function init() {
+async function init() {
   loadGame();
   createFireParticles();
   updateCoinsDisplay();
   updateDragonDisplay();
   updateCollection();
+
+  try {
+    await SplashScreen.hide();
+  } catch (err) {
+    console.log('Splash screen hide failed (normal in browser)', err);
+  }
 }
 
 init();

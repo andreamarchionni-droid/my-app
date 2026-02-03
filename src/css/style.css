@@ -502,45 +502,34 @@ body.bg-lava::before {
   }
 }
 
+/* Main Dragon Display */
 .dragon-image {
-  position: relative;
-  z-index: 1;
+  font-size: 8rem;
+  line-height: 1;
   text-align: center;
   margin-bottom: 1rem;
   animation: dragonFloat 4s ease-in-out infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.dragon-image .dragon-img {
-  width: 180px;
-  height: 180px;
-  object-fit: contain;
   filter: drop-shadow(0 0 25px var(--accent-orange));
 }
 
 /* Collection Dragon Images */
 .collection-dragon-img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin-bottom: 0.25rem;
+  display: none;
 }
 
-/* Battle Dragon Images */
-.battle-dragon-img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
+/* Battle Dragon Styles */
+.fighter-image {
+  font-size: 5rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+  animation: floatBattle 3s ease-in-out infinite;
 }
 
-.player-dragon .battle-dragon-img {
-  filter: drop-shadow(0 0 15px var(--accent-blue));
+.player-dragon .fighter-image {
+  transform: scaleX(1);
 }
 
-.enemy-dragon .battle-dragon-img {
-  filter: drop-shadow(0 0 15px var(--accent-red));
+.enemy-dragon .fighter-image {
   transform: scaleX(-1);
 }
 
@@ -553,6 +542,62 @@ body.bg-lava::before {
 
   50% {
     transform: translateY(-15px) rotate(2deg);
+  }
+}
+
+@keyframes floatBattle {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Battle Responsiveness */
+.battle-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem 0;
+  gap: 1rem;
+}
+
+.fighter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.vs-symbol {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent-red);
+  font-family: 'Uncial Antiqua', cursive;
+  text-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+}
+
+@media (max-width: 480px) {
+  .battle-field {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .vs-symbol {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .fighter-image {
+    font-size: 4rem;
+  }
+
+  .fighter-name {
+    font-size: 0.9rem;
   }
 }
 

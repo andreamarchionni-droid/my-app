@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Dragon Realm - Il Regno dei Draghi</title>
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="theme-color" content="#1a0a2e" />
+  <meta name="description"
+    content="Scopri il mondo dei draghi, colleziona creature leggendarie e combatti per la gloria!" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Uncial+Antiqua&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="manifest" href="./manifest.json" />
+</head>
+
+<body>
+  <div id="app">
+    <!-- Particelle di fuoco -->
+    <div class="fire-particles" id="fireParticles"></div>
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="dragon-emblem">🐉</div>
+        <h1 class="app-title">Dragon Realm</h1>
+        <div class="coins-display">
+          <span class="coin-icon">💎</span>
+          <span id="coinsCount">1000</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Dragon Display -->
+      <section class="dragon-showcase" id="dragonShowcase">
+        <div class="dragon-card" id="currentDragon">
+          <div class="dragon-aura"></div>
+          <div class="dragon-image" id="dragonImage">🐲</div>
+          <div class="dragon-info">
+            <h2 class="dragon-name" id="dragonName">Ignis il Furioso</h2>
+            <div class="dragon-element" id="dragonElement">
+              <span class="element-icon">🔥</span>
+              <span>Fuoco</span>
+            </div>
+            <div class="dragon-stats">
+              <div class="stat">
+                <span class="stat-label">Potenza</span>
+                <div class="stat-bar">
+                  <div class="stat-fill power" id="powerBar" style="width: 85%"></div>
+                </div>
+                <span class="stat-value" id="powerValue">85</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Difesa</span>
+                <div class="stat-bar">
+                  <div class="stat-fill defense" id="defenseBar" style="width: 70%"></div>
+                </div>
+                <span class="stat-value" id="defenseValue">70</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Velocità</span>
+                <div class="stat-bar">
+                  <div class="stat-fill speed" id="speedBar" style="width: 90%"></div>
+                </div>
+                <span class="stat-value" id="speedValue">90</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Action Buttons -->
+      <section class="actions">
+        <button class="action-btn summon-btn" id="summonBtn">
+          <span class="btn-icon">✨</span>
+          <span class="btn-text">Evoca Drago</span>
+          <span class="btn-cost">💎 100</span>
+        </button>
+        <button class="action-btn train-btn" id="trainBtn">
+          <span class="btn-icon">⚔️</span>
+          <span class="btn-text">Addestra</span>
+        </button>
+        <button class="action-btn battle-btn" id="battleBtn">
+          <span class="btn-icon">🏆</span>
+          <span class="btn-text">Battaglia</span>
+        </button>
+      </section>
+
+      <!-- Dragon Collection -->
+      <section class="collection">
+        <h3 class="section-title">
+          <span class="title-decoration">⚜️</span>
+          La Tua Collezione
+          <span class="title-decoration">⚜️</span>
+        </h3>
+        <div class="collection-grid" id="collectionGrid">
+          <!-- Dragons will be added dynamically -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Battle Modal -->
+    <div class="modal" id="battleModal">
+      <div class="modal-content battle-arena">
+        <div class="arena-header">
+          <h2>⚔️ Arena di Battaglia ⚔️</h2>
+        </div>
+        <div class="battle-field">
+          <div class="fighter player-dragon">
+            <div class="fighter-image" id="playerDragonImage">🐲</div>
+            <div class="fighter-name" id="playerDragonName">Il Tuo Drago</div>
+            <div class="health-bar">
+              <div class="health-fill" id="playerHealth" style="width: 100%"></div>
+            </div>
+          </div>
+          <div class="vs-symbol">VS</div>
+          <div class="fighter enemy-dragon">
+            <div class="fighter-image" id="enemyDragonImage">🐉</div>
+            <div class="fighter-name" id="enemyDragonName">Drago Nemico</div>
+            <div class="health-bar enemy">
+              <div class="health-fill" id="enemyHealth" style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="battle-log" id="battleLog">
+          <p>Preparati alla battaglia...</p>
+        </div>
+        <div class="battle-actions">
+          <button class="battle-action-btn attack-btn" id="attackBtn">🔥 Attacca</button>
+          <button class="battle-action-btn defend-btn" id="defendBtn">🛡️ Difendi</button>
+          <button class="battle-action-btn special-btn" id="specialBtn">⚡ Speciale</button>
+        </div>
+        <button class="close-modal" id="closeBattle">✕</button>
+      </div>
+    </div>
+
+    <!-- Training Modal -->
+    <div class="modal" id="trainModal">
+      <div class="modal-content training-ground">
+        <div class="training-header">
+          <h2>🏋️ Campo di Addestramento 🏋️</h2>
+        </div>
+        <div class="training-options">
+          <div class="training-option" data-stat="power">
+            <div class="training-icon">💪</div>
+            <div class="training-info">
+              <h4>Allenamento Potenza</h4>
+              <p>Aumenta la forza d'attacco</p>
+            </div>
+            <button class="train-stat-btn">Allena</button>
+          </div>
+          <div class="training-option" data-stat="defense">
+            <div class="training-icon">🛡️</div>
+            <div class="training-info">
+              <h4>Allenamento Difesa</h4>
+              <p>Aumenta la resistenza</p>
+            </div>
+            <button class="train-stat-btn">Allena</button>
+          </div>
+          <div class="training-option" data-stat="speed">
+            <div class="training-icon">💨</div>
+            <div class="training-info">
+              <h4>Allenamento Velocità</h4>
+              <p>Aumenta l'agilità</p>
+            </div>
+            <button class="train-stat-btn">Allena</button>
+          </div>
+        </div>
+        <button class="close-modal" id="closeTrain">✕</button>
+      </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+
+</html>

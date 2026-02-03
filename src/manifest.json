@@ -1,0 +1,21 @@
+{
+  "name": "Dragon Realm",
+  "short_name": "DragonRealm",
+  "description": "Colleziona draghi leggendari e combatti per la gloria!",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a0a2e",
+  "theme_color": "#1a0a2e",
+  "icons": [
+    {
+      "src": "./assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.env
+.DS_Store
+.vscode/
+.idea/
+*.log
+*.map
+
+# Android
+android/build/
+android/.gradle/
+android/app/build/
+android/capacitor.settings.gradle
+android/.idea/
+local.properties
+
+# Capacitor
+capacitor.config.json.timestamp
